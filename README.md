@@ -1,66 +1,82 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Portfolio Template (Laravel + Livewire)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A lightweight personal portfolio template built with Laravel, Livewire, Tailwind CSS, and Vite. This project provides a starting point for showcasing projects, skills, and a contact form powered by Livewire.
 
-## About Laravel
+**Key features**
+- **Laravel 10+**: Application foundation and routing.
+- **Livewire components**: Interactive contact form at `app/Http/Livewire/ContactForm.php`.
+- **Eloquent models & migrations**: `User`, `Contact` and supporting migrations in `database/migrations`.
+- **Tailwind CSS + Vite**: Modern utility-first styling and fast asset builds (`resources/css/app.css`, `resources/js/app.js`).
+- **Ready-to-use pages**: A simple `welcome` view at `resources/views/welcome.blade.php` that can be adapted as a portfolio homepage.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Repository structure (high level)
+- `app/Http/Livewire/` – Livewire components (e.g. `ContactForm.php`).
+- `app/Models/` – Eloquent models (`User.php`, `Contact.php`).
+- `resources/views/` – Blade views and layouts.
+- `database/migrations/` – Migration files for schema setup.
+- `resources/js/`, `resources/css/` – Frontend assets (Vite entry points).
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Requirements
+- PHP 8.1+
+- Composer
+- Node.js 18+ and npm/yarn
+- A database supported by Laravel (MySQL, SQLite, Postgres, etc.)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Quick start (development)
+1. Clone the repo and install PHP dependencies:
 
-## Learning Laravel
+```powershell
+composer install
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+2. Install frontend dependencies and build assets (development watch):
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```powershell
+npm install
+npm run dev
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+3. Copy the example environment file and set values:
 
-## Laravel Sponsors
+```powershell
+copy .env.example .env
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Edit `.env` to configure your `DB_` settings and `APP_URL`.
 
-### Premium Partners
+4. Generate the application key and run migrations:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+```powershell
+php artisan key:generate; php artisan migrate
+```
 
-## Contributing
+5. Serve the application:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```powershell
+php artisan serve
+```
 
-## Code of Conduct
+Open the app at the URL shown by the server (default `http://127.0.0.1:8000`).
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Contact form
+The contact form is implemented as a Livewire component at `app/Http/Livewire/ContactForm.php` and backed by the `Contact` model at `app/Models/Contact.php`. By default submissions are stored in the database (`contacts` table). You can customize behavior (send email, save additional fields) inside the component.
 
-## Security Vulnerabilities
+## Tests
+The project includes basic PHPUnit configuration. Run tests with:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```powershell
+vendor\\bin\\phpunit
+```
 
-## License
+## Common commands
+- Install PHP deps: `composer install`
+- Install JS deps: `npm install`
+- Build assets: `npm run build`
+- Dev assets: `npm run dev`
+- Migrate DB: `php artisan migrate`
+- Run tests: `vendor\\bin\\phpunit`
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Deployment notes
+- Ensure `APP_ENV=production` and `APP_DEBUG=false` in `.env`.
+- Run `php artisan migrate --force` on deploy to apply migrations.
+- Build production assets with `npm run build`.
