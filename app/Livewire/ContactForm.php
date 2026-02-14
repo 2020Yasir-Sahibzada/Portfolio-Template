@@ -7,6 +7,7 @@ use App\Models\Contact;
 
 class ContactForm extends Component
 {
+    \\ Livewire contact form added
     public $name;
     public $email;
     public $message;
