@@ -71,7 +71,7 @@
                 </div>
             </div>
 
-        </section><!-- /Hero Section -->
+        </section>
 
         <!-- About Section -->
         <section id="about" class="about section">
